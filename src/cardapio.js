@@ -1,32 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
   const produtos = [
-    {
-      id: 1,
-      nome: "Café Tradicional",
-      descricao: "Café feito com grãos selecionados, sabor clássico e aroma intenso.",
-      preco: 7.50,
-      imagem: "assets/images/cafe_tradicional.webp"
-    },
-    {
-      id: 2,
-      nome: "Café Gourmet",
-      descricao: "Blend especial com grãos premium, sabor encorpado e notas frutadas.",
-      preco: 9.00,
-      imagem: "assets/images/cafe_gourmet.jpg"
-    },
-    {
-      id: 3,
-      nome: "Café Expresso",
-      descricao: "Expresso forte e cremoso, perfeito para começar o dia.",
-      preco: 6.00,
-      imagem: "assets/images/cafe_expresso.jpg"
-    }
+    { id: 1, nome: "Café Tradicional", descricao: "Café feito com grãos selecionados, sabor clássico e aroma intenso.", preco: 7.50, imagem: "assets/images/cafe_tradicional.webp" },
+    { id: 2, nome: "Café Gourmet", descricao: "Blend especial com grãos premium, sabor encorpado e notas frutadas.", preco: 9.00, imagem: "assets/images/cafe_gourmet.jpg" },
+    { id: 3, nome: "Café Expresso", descricao: "Expresso forte e cremoso, perfeito para começar o dia.", preco: 6.00, imagem: "assets/images/cafe_expresso.jpg" }
   ];
 
   const cardapioList = document.getElementById("cardapio-list");
   const pedidoTableBody = document.querySelector("#pedido-table tbody");
 
-  // Função para renderizar os cards de produtos
+  // Modal e botões
+  const modal = document.getElementById("modal-add-item");
+  const btnOpenModal = document.getElementById("btn-open-modal");
+  const btnCloseModal = document.getElementById("btn-close-modal");
+  const formAddItem = document.getElementById("add-item-form");
+  const main = document.querySelector("main");
+
+  // Renderiza cards dos produtos
   function renderProdutos() {
     produtos.forEach(produto => {
       const col = document.createElement("div");
@@ -48,31 +37,70 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Função para adicionar produto ao pedido e atualizar tabela
-  function adicionarAoPedido(id) {
-    const produto = produtos.find(p => p.id === id);
-    if (!produto) return;
-
+  // Adiciona um produto à tabela pedido
+  function adicionarAoPedido(id, nome, preco, descricao) {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${produto.id}</td>
-      <td>${produto.nome}</td>
-      <td>${produto.preco.toFixed(2)}</td>
-      <td>${produto.descricao}</td>
+      <td>${id}</td>
+      <td>${nome}</td>
+      <td>${Number(preco).toFixed(2)}</td>
+      <td>${descricao}</td>
     `;
-
     pedidoTableBody.appendChild(tr);
   }
 
-  // Inicializar produtos na tela
   renderProdutos();
 
-  // Delegação de evento para botões "Adicionar ao pedido"
-  cardapioList.addEventListener("click", (e) => {
+  // Itens iniciais na tabela
+  adicionarAoPedido(1, "Café Tradicional", 7.50, "Café feito com grãos selecionados, sabor clássico e aroma intenso.");
+  adicionarAoPedido(3, "Café Expresso", 6.00, "Expresso forte e cremoso, perfeito para começar o dia.");
+
+  // Evento para adicionar produto via botão do card
+  cardapioList.addEventListener("click", e => {
     if (e.target.tagName === "BUTTON") {
       const id = parseInt(e.target.getAttribute("data-id"));
-      adicionarAoPedido(id);
+      const produto = produtos.find(p => p.id === id);
+      if (produto) {
+        adicionarAoPedido(produto.id, produto.nome, produto.preco, produto.descricao);
+      }
+    }
+  });
+
+  // Abre modal e escurece fundo
+  btnOpenModal.addEventListener("click", () => {
+    modal.style.display = "flex";
+    main.classList.add("dimmed");
+  });
+
+  // Fecha modal e remove escurecimento
+  btnCloseModal.addEventListener("click", () => {
+    modal.style.display = "none";
+    formAddItem.reset();
+    main.classList.remove("dimmed");
+  });
+
+  // Fecha modal clicando fora do conteúdo
+  modal.addEventListener("click", e => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+      formAddItem.reset();
+      main.classList.remove("dimmed");
+    }
+  });
+
+  // Submete formulário do modal
+  formAddItem.addEventListener("submit", e => {
+    e.preventDefault();
+    const id = document.getElementById("input-id").value.trim();
+    const nome = document.getElementById("input-nome").value.trim();
+    const preco = document.getElementById("input-preco").value.trim();
+    const descricao = document.getElementById("input-descricao").value.trim();
+
+    if (id && nome && preco && descricao) {
+      adicionarAoPedido(id, nome, preco, descricao);
+      modal.style.display = "none";
+      formAddItem.reset();
+      main.classList.remove("dimmed");
     }
   });
 });
-
