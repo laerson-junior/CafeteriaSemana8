@@ -1,1 +1,141 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fdfdfd;
+  color: #333;
+}
+
+header {
+  background-color: #004080; /* azul escuro */
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+nav {
+  margin-top: 10px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.carousel {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.carousel-inner {
+  height: 320px;
+}
+
+.carousel-item {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-img {
+  height: 300px;
+  width: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 0%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.2); /* leve sombra para visualização */
+  z-index: 2;
+}
+
+.carousel-control-prev {
+  left: 0;
+}
+
+.carousel-control-next {
+  right: 0;
+}
+
+.intro h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.botao {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 25px;
+  background-color: #007bff; /* azul médio */
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.botao:hover {
+  background-color: #0056b3; /* azul mais escuro */
+}
+
+.imagem-principal img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 30px;
+  border-radius: 10px;
+}
+
+footer {
+  background-color: #004080; /* azul escuro */
+  color: white;
+  text-align: center;
+  padding: 15px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Estilo para o cardápio */
+.card {
+  border: none;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
 
