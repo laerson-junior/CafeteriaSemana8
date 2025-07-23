@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cardápio - Cafés do LJ</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Cafés do LJ</h1>
+  </header>
+
+  <main class="container my-5">
+    <h2 class="text-center mb-4">Nosso Cardápio</h2>
+    
+    <div id="cardapio-list" class="row g-4 mb-5">
+      <!-- Produtos em cards aqui -->
+    </div>
+
+    <h3 class="mb-3">Seu Pedido</h3>
+    <table class="table table-striped" id="pedido-table">
+      <thead class="table-primary">
+        <tr>
+          <th>ID</th>
+          <th>Comida</th>
+          <th>Preço (R$)</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Produtos adicionados aparecerão aqui -->
+      </tbody>
+    </table>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Cafés do LJ. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="cardapio.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
